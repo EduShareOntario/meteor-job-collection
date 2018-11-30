@@ -88,7 +88,7 @@ class JobCollectionBase extends Mongo.Collection
       throw new Meteor.Error 'The global definition of Mongo.Collection has changed since the job-collection package was loaded. Please ensure that any packages that redefine Mongo.Collection are loaded before job-collection.'
 
     unless Mongo.Collection is Mongo.Collection.prototype.constructor
-      throw new Meteor.Error 'The global definition of Mongo.Collection has been patched by another package, and the prototype constructor has been left in an inconsistent state. Please see this link for a workaround: https://github.com/vsivsi/meteor-file-sample-app/issues/2#issuecomment-120780592'
+      throw new Meteor.Error 'The global definition of Mongo.Collection has been patched by another package, and the prototype constructor has been left in an inconsistent state. Please see this link for a workaround: https://github.com/lpender/meteor-file-sample-app/issues/2#issuecomment-120780592'
 
     @later = later  # later object, for convenience
 
@@ -875,7 +875,7 @@ class JobCollectionBase extends Mongo.Collection
     # the first valid scheduled time that occurs after doc.after
     if @later? and typeof doc.repeatWait isnt 'number'
       # Using a workaround to find next time after doc.after.
-      # See: https://github.com/vsivsi/meteor-job-collection/issues/217
+      # See: https://github.com/lpender/meteor-job-collection/issues/217
       schedule = @later?.schedule(doc.repeatWait)
       unless schedule and next = schedule.next(2, schedule.prev(1, doc.after))[1]
         console.warn "No valid available later.js times in schedule after #{doc.after}"

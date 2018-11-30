@@ -11,7 +11,7 @@ Package.describe({
     'A persistent and reactive job queue for Meteor, supporting distributed workers that can run anywhere',
   name: 'lpender:job-collection',
   version: currentVersion,
-  git: 'https://github.com/vsivsi/meteor-job-collection.git',
+  git: 'https://github.com/lpender/meteor-job-collection.git',
 });
 
 Package.onUse(function(api) {
@@ -28,7 +28,7 @@ Package.onUse(function(api) {
 });
 
 Package.onTest(function(api) {
-  api.use('vsivsi:job-collection@' + currentVersion, ['server', 'client']);
+  api.use('lpender:job-collection@' + currentVersion, ['server', 'client']);
   api.use('mrt:later@1.6.1', ['server', 'client']);
   api.use('coffeescript@2.0.3_3', ['server', 'client']);
   api.use('check@1.2.5', ['server', 'client']);
