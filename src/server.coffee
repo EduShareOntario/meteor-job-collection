@@ -20,6 +20,7 @@ if Meteor.isServer
   class JobCollection extends share.JobCollectionBase
 
     constructor: (root = 'queue', options = {}) ->
+      super(root, options)
       unless @ instanceof JobCollection
         return new JobCollection(root, options)
 

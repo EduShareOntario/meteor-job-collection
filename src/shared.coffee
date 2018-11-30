@@ -81,6 +81,7 @@ _validJobDoc = () ->
 class JobCollectionBase extends Mongo.Collection
 
   constructor: (@root = 'queue', options = {}) ->
+    super(root, options)
     unless @ instanceof JobCollectionBase
       return new JobCollectionBase(@root, options)
 
