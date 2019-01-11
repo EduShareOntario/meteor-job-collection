@@ -31,11 +31,6 @@ if Meteor.isClient
 
     constructor: (root = 'queue', options = {}) ->
       super(root, options)
-      unless @ instanceof JobCollection
-        return new JobCollection(root, options)
-
-      # Call super's constructor
-      super root, options
 
       @logConsole = false
       @isSimulation = true

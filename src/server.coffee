@@ -21,12 +21,6 @@ if Meteor.isServer
 
     constructor: (root = 'queue', options = {}) ->
       super(root, options)
-      unless @ instanceof JobCollection
-        return new JobCollection(root, options)
-
-      # Call super's constructor
-      super root, options
-
       @events = new eventEmitter()
 
       @_errorListener = @events.on 'error', @_onError

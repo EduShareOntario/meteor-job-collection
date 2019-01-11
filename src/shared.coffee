@@ -80,26 +80,15 @@ _validJobDoc = () ->
 
 class JobCollectionBase extends Mongo.Collection
 
-  constructor: (@root = 'queue', options = {}) ->
-    super(root, options)
-    unless @ instanceof JobCollectionBase
-      return new JobCollectionBase(@root, options)
-
-    unless @ instanceof Mongo.Collection
-      throw new Meteor.Error 'The global definition of Mongo.Collection has changed since the job-collection package was loaded. Please ensure that any packages that redefine Mongo.Collection are loaded before job-collection.'
-
+  constructor: (collectionName = 'queue', options = {}) ->
+    # Call super's constructor
+    super collectionName, options
     unless Mongo.Collection is Mongo.Collection.prototype.constructor
       throw new Meteor.Error 'The global definition of Mongo.Collection has been patched by another package, and the prototype constructor has been left in an inconsistent state. Please see this link for a workaround: https://github.com/lpender/meteor-file-sample-app/issues/2#issuecomment-120780592'
 
     @later = later  # later object, for convenience
 
     options.noCollectionSuffix ?= false
-
-    collectionName = @root
-
-    unless options.noCollectionSuffix
-      collectionName += '.jobs'
-
     # Remove non-standard options before
     # calling Mongo.Collection constructor
     delete options.noCollectionSuffix
@@ -129,8 +118,6 @@ class JobCollectionBase extends Mongo.Collection
         level = if fatal then 'danger' else 'warning'
         @_createLogEntry msg, runId, level).bind(@)
 
-    # Call super's constructor
-    super collectionName, options
 
   _validNumGTEZero: _validNumGTEZero
   _validNumGTZero: _validNumGTZero

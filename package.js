@@ -4,14 +4,14 @@
 ###     See included LICENSE file for details.
 ***************************************************************************/
 
-var currentVersion = '1.5.3';
+var currentVersion = '1.5.4';
 
 Package.describe({
   summary:
     'A persistent and reactive job queue for Meteor, supporting distributed workers that can run anywhere',
-  name: 'lpender:job-collection',
+  name: 'edushareontario:job-collection',
   version: currentVersion,
-  git: 'https://github.com/lpender/meteor-job-collection.git',
+  git: 'https://github.com/EduShareOntario/meteor-job-collection.git',
 });
 
 Package.onUse(function(api) {
